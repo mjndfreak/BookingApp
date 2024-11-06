@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingApp.WebApi", "BookingApp.WebApi\BookingApp.WebApi.csproj", "{3C7B1D05-898D-480B-9475-BB688FBD8AB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingApp.Data", "BookingApp.Data\BookingApp.Data.csproj", "{BBD73B0A-A68F-4315-8A68-4D7B8D3C2420}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingApp.Business", "BookingApp.Business\BookingApp.Business.csproj", "{680F84E2-7425-49CD-9D08-9ABAE0B34C78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C7B1D05-898D-480B-9475-BB688FBD8AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7B1D05-898D-480B-9475-BB688FBD8AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7B1D05-898D-480B-9475-BB688FBD8AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7B1D05-898D-480B-9475-BB688FBD8AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBD73B0A-A68F-4315-8A68-4D7B8D3C2420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBD73B0A-A68F-4315-8A68-4D7B8D3C2420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBD73B0A-A68F-4315-8A68-4D7B8D3C2420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBD73B0A-A68F-4315-8A68-4D7B8D3C2420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{680F84E2-7425-49CD-9D08-9ABAE0B34C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{680F84E2-7425-49CD-9D08-9ABAE0B34C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{680F84E2-7425-49CD-9D08-9ABAE0B34C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{680F84E2-7425-49CD-9D08-9ABAE0B34C78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
