@@ -27,3 +27,4 @@
 /Users/cagdasergenc/RiderProjects/BookingApp/BookingApp.Data/obj/Debug/net8.0/BookingApp.Data.genruntimeconfig.cache
 /Users/cagdasergenc/RiderProjects/BookingApp/BookingApp.Data/obj/Debug/net8.0/ref/BookingApp.Data.dll
 /Users/cagdasergenc/RiderProjects/BookingApp/BookingApp.Data/obj/Debug/net8.0/EFCoreNpgsqlNetTopologySuite.cs
+/Users/cagdasergenc/RiderProjects/BookingApp/BookingApp.Data/obj/Debug/net8.0/BookingApp.Data.sourcelink.json
