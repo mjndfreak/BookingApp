@@ -7,7 +7,7 @@ public class HotelEntity : BaseEntity
 {
     public string Name { get; set; }
     public int? Stars { get; set; }
-    public string Address { get; set; }
+    public string Location { get; set; }
     public AccomodationType AccomodationType { get; set; }
     
     // Relational properties

@@ -59,7 +59,7 @@ namespace BookingApp.Data.Migrations
                     b.Property<int>("AccomodationType")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("text");
 

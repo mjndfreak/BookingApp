@@ -1,5 +1,7 @@
 using System.Text;
 using BookingApp.Business.DataProtection;
+using BookingApp.Business.Operations.Feature;
+using BookingApp.Business.Operations.Hotel;
 using BookingApp.Business.Operations.User;
 using BookingApp.Data.Entities;
 using BookingApp.Data.Repositories;
@@ -8,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +18,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var jwtSecurityScheme = new OpenApiSecurityScheme
+    {
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        Name = "JwtAuthentication",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Description = "Put **_ONLY_** your JWT Bearer Token in the Textbox below!",
+        Reference = new OpenApiReference
+        {
+            Id = JwtBearerDefaults.AuthenticationScheme,
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+    options.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {jwtSecurityScheme, Array.Empty<string>()}
+    });
+});
 
 builder.Services.AddScoped<IDataProtection, DataProtection>();
 // Im telling the service container that whenever it sees IDataProtection, it should create an instance of DataProtection.
@@ -47,6 +71,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Im telling the service container that whenever it sees IRepository, it should create an instance of Repository.
 builder.Services.AddScoped<IUserService, UserManager>();
 // Im telling the service container that whenever it sees IUserService, it should create an instance of UserManager.
+builder.Services.AddScoped<IFeatureService, FeatureManager>();
+// Im telling the service container that whenever it sees IFeatureService, it should create an instance of FeatureManager.
+builder.Services.AddScoped<IHotelService, HotelManager>();
 
 var app = builder.Build();
 
