@@ -39,7 +39,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 
     public void Update(TEntity entity)
     {
-        entity.ModifiedAt = DateTime.Now;
+        entity.ModifiedAt = DateTime.UtcNow;
         _dbSet.Update(entity);
         //_db.SaveChanges();
     }
