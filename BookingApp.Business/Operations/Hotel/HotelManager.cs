@@ -115,4 +115,58 @@ public class HotelManager : IHotelService
         }).ToListAsync();
         return hotels;
     }
+
+    public async Task<ServiceMessage> AdjustHotelStars(int id, int changeTo)
+    {
+        var hotel = _hotelRepository.GetById(id);
+        if (hotel is null)
+        {
+            return new ServiceMessage
+            {
+                IsSuccess = false,
+                Message = "No hotel found with this Id!"
+            };
+        }
+        hotel.Stars = changeTo;
+        _hotelRepository.Update(hotel);
+        try
+        {
+            await _unitOfWork.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            throw new Exception("Error while updating hotel stars!");
+        }
+        return new ServiceMessage
+        {
+            IsSuccess = true
+        };
+    }
+
+    public async Task<ServiceMessage> DeleteHotel(int id)
+    {
+        var hotel = _hotelRepository.GetById(id);
+        if (hotel is null)
+        {
+            return new ServiceMessage
+            {
+                IsSuccess = false,
+                Message = "No hotel found with this Id!"
+            };
+        }
+        _hotelRepository.Delete(id);
+        
+        try
+        {
+            await _unitOfWork.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            throw new Exception("Error while deleting hotel!");
+        }
+        return new ServiceMessage
+        {
+            IsSuccess = true
+        };  
+    }
 }

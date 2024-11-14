@@ -59,4 +59,26 @@ public class HotelsController : ControllerBase
 
         return Ok();
     }
+    
+    [HttpPatch("{id}/stars")]
+    public async Task<IActionResult> AdjustHotelStars(int id, int changeBy)
+    {
+        var result = await _hotelService.AdjustHotelStars(id, changeBy);
+        if (!result.IsSuccess)
+        {
+            return NotFound();
+        }
+        return Ok();
+    }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteHotel(int id)
+    {
+        var result = await _hotelService.DeleteHotel(id);
+        if (!result.IsSuccess)
+        {
+            return NotFound();
+        }
+        return Ok();
+    }
+    
 }
