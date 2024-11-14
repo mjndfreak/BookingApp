@@ -52,15 +52,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidateIssuer = true, // Validate the issuer of the token
+        ValidIssuer = builder.Configuration["Jwt:Issuer"], // Set the valid issuer
 
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidateAudience = true, // Validate the audience of the token
+        ValidAudience = builder.Configuration["Jwt:Audience"], // Set the valid audience
 
-        ValidateLifetime = true,
+        ValidateLifetime = true, // Validate the token's lifetime
 
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!)) // Set the signing key
     };
 });
 
