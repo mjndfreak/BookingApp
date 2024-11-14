@@ -11,7 +11,7 @@ public class BookingAppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        
         //Fluent Api
         
         modelBuilder.ApplyConfiguration(new FeatureConfiguration());
@@ -20,6 +20,14 @@ public class BookingAppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ReservationConfiguration());
         modelBuilder.ApplyConfiguration(new RoomConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+        modelBuilder.Entity<SettingEntity>().HasData(new SettingEntity
+        {
+            Id = 1,
+            MaintenenceMode = false
+        });
+        
+        base.OnModelCreating(modelBuilder);
     }
 
     public DbSet<UserEntity> Users => Set<UserEntity>();
@@ -28,4 +36,6 @@ public class BookingAppDbContext : DbContext
     public DbSet<HotelFeatureEntity> HotelFeatures => Set<HotelFeatureEntity>();
     public DbSet<ReservationEntity> Reservations => Set<ReservationEntity>();
     public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
+    public DbSet<SettingEntity> Settings { get; set; }
+    
 }

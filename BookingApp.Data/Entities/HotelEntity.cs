@@ -21,7 +21,7 @@ public class HotelConfiguration : BaseConfiguration<HotelEntity>
     {
         base.Configure(builder);
 
-        builder.Property(x => x.Stars).IsRequired(false);
+        builder.Property(x => x.Stars).IsRequired();
         builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
     }
 }

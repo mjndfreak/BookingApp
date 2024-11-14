@@ -2,6 +2,7 @@ using System.Text;
 using BookingApp.Business.DataProtection;
 using BookingApp.Business.Operations.Feature;
 using BookingApp.Business.Operations.Hotel;
+using BookingApp.Business.Operations.Setting;
 using BookingApp.Business.Operations.User;
 using BookingApp.Data.Entities;
 using BookingApp.Data.Repositories;
@@ -74,6 +75,9 @@ builder.Services.AddScoped<IUserService, UserManager>();
 builder.Services.AddScoped<IFeatureService, FeatureManager>();
 // Im telling the service container that whenever it sees IFeatureService, it should create an instance of FeatureManager.
 builder.Services.AddScoped<IHotelService, HotelManager>();
+// Im telling the service container that whenever it sees IHotelService, it should create an instance of HotelManager.
+builder.Services.AddScoped<ISettingService, SettingManager>();
+// Im telling the service container that whenever it sees ISettingService, it should create an instance of SettingManager.
 
 var app = builder.Build();
 
