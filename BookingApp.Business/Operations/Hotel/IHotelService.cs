@@ -10,4 +10,5 @@ public interface IHotelService
     Task<List<HotelDto>> GetAllHotels();
     Task<ServiceMessage> AdjustHotelStars(int id, int changeBy);
     Task<ServiceMessage> DeleteHotel(int id);
+    Task<ServiceMessage> UpdateHotel(UpdateHotelDto updateHotelDto);
 }

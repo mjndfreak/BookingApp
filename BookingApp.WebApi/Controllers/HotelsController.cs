@@ -1,6 +1,7 @@
 using ApiProject.Models;
 using BookingApp.Business.Operations.Hotel;
 using BookingApp.Business.Operations.Hotel.Dtos;
+using BookingApp.Business.Types;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -81,4 +82,23 @@ public class HotelsController : ControllerBase
         return Ok();
     }
     
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdateHotel(int id, UpdateHotelRequest request)
+    {
+        var updateHotelDto = new UpdateHotelDto
+        {
+            Id = id,
+            Name = request.Name,
+            Stars = request.Stars,
+            Location = request.Location,
+            AccomodationType = request.AccomodationType,
+            FeatureIds = request.FeatureIds
+        };
+        var result = await _hotelService.UpdateHotel(updateHotelDto);
+
+        if (!result.IsSuccess)
+            return NotFound(result.Message);
+        return Ok();
+    }
 }

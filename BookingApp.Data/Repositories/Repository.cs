@@ -23,13 +23,18 @@ public class Repository<TEntity> : IRepository<TEntity>
         //_db.SaveChanges();
     }
 
-    public void Delete(TEntity entity)
+    public void Delete(TEntity entity, bool isSoftDelete = true)
     {
-        entity.ModifiedAt = DateTime.UtcNow;
-        entity.IsDeleted = true;
-        _dbSet.Update(entity);
-        //_db.SaveChanges();
+        if (isSoftDelete)
+        {
+            entity.ModifiedAt = DateTime.UtcNow;
+            entity.IsDeleted = true;
+            _dbSet.Update(entity);
+        }
+        _dbSet.Remove(entity);
     }
+    
+    
 
     public void Delete(int id)
     {

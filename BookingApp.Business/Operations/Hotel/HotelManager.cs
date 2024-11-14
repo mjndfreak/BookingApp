@@ -169,4 +169,68 @@ public class HotelManager : IHotelService
             IsSuccess = true
         };  
     }
+
+    public async Task<ServiceMessage> UpdateHotel(UpdateHotelDto updateHotelDto)
+    {
+        var hotel = _hotelRepository.GetById(updateHotelDto.Id);
+        if (hotel is null)
+        {
+            return new ServiceMessage
+            {
+                IsSuccess = false,
+                Message = "No hotel found with this Id!"
+            };
+        }
+
+        await _unitOfWork.BeginTransactionAsync();
+        
+        hotel.Name = updateHotelDto.Name;
+        hotel.Stars = updateHotelDto.Stars;
+        hotel.Location = updateHotelDto.Location;
+        hotel.AccomodationType = updateHotelDto.AccomodationType;
+        
+        _hotelRepository.Update(hotel);
+        
+        try
+        {
+            await _unitOfWork.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            await _unitOfWork.RollbackTransaction();
+            throw new Exception("Error while updating hotel!");
+        }
+
+        var hotelFeatures = _hotelFeatureRepository.GetAll(x => x.HotelId == updateHotelDto.Id).ToList();
+        foreach (var hotelFeature in hotelFeatures)
+        {
+            _hotelFeatureRepository.Delete(hotelFeature, false);
+        }
+
+        foreach (var featureId in updateHotelDto.FeatureIds)
+        {
+            var hotelFeature = new HotelFeatureEntity
+            {
+                HotelId = hotel.Id,
+                FeatureId = featureId
+            };
+            _hotelFeatureRepository.Add(hotelFeature);
+        }
+
+        try
+        {
+            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitTransaction();
+        }
+        catch (Exception)
+        {
+            await _unitOfWork.RollbackTransaction();
+            throw new Exception("Error while updating hotel features!");
+        }
+
+        return new ServiceMessage
+        {
+            IsSuccess = true
+        };
+    }
 }
