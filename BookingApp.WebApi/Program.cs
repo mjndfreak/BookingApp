@@ -1,4 +1,5 @@
 using System.Text;
+using ApiProject.Middlewares;
 using BookingApp.Business.DataProtection;
 using BookingApp.Business.Operations.Feature;
 using BookingApp.Business.Operations.Hotel;
@@ -88,6 +89,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMaintanenceMiddleware();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
