@@ -19,6 +19,25 @@ public class HotelsController : ControllerBase
         _hotelService = hotelService;
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetHotel(int id)
+    {
+        var hotel = await _hotelService.GetHotel(id);
+        if (hotel == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(hotel);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAllHotels()
+    {
+        var hotels = await _hotelService.GetAllHotels();
+        return Ok(hotels);
+    }
+
     [HttpPost]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> AddHotel(AddHotelRequest request)

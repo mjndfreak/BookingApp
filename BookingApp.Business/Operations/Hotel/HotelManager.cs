@@ -3,6 +3,7 @@ using BookingApp.Business.Types;
 using BookingApp.Data.Entities;
 using BookingApp.Data.Repositories;
 using BookingApp.Data.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookingApp.Business.Operations.Hotel;
 
@@ -77,5 +78,41 @@ public class HotelManager : IHotelService
         { 
             IsSuccess = true
         };
+    }
+
+    public async Task<HotelDto> GetHotel(int id)
+    {
+        var hotel = await _hotelRepository.GetAll(x => x.Id == id).Select(x => new HotelDto
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Stars = x.Stars,
+            Location = x.Location,
+            AccomodationType = x.AccomodationType,
+            Features = x.HotelFeatures.Select(x => new HotelFeatureDto
+            {
+                Id = x.Feature.Id,
+                Title = x.Feature.Title
+            }).ToList()
+        }).FirstOrDefaultAsync();
+        return hotel;
+    }
+
+    public async Task<List<HotelDto>> GetAllHotels()
+    {
+        var hotels = await _hotelRepository.GetAll().Select(x => new HotelDto
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Stars = x.Stars,
+            Location = x.Location,
+            AccomodationType = x.AccomodationType,
+            Features = x.HotelFeatures.Select(x => new HotelFeatureDto
+            {
+                Id = x.Feature.Id,
+                Title = x.Feature.Title
+            }).ToList()
+        }).ToListAsync();
+        return hotels;
     }
 }
