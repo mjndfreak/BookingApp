@@ -47,7 +47,7 @@ public class HotelsController : ControllerBase
         {
             Name = request.Name,
             Stars = request.Stars,
-            Location = request.Location,
+            Address = request.Address,
             AccomodationType = request.AccomodationType,
             FeatureIds = request.FeatureIds
         };
@@ -91,7 +91,7 @@ public class HotelsController : ControllerBase
             Id = id,
             Name = request.Name,
             Stars = request.Stars,
-            Location = request.Location,
+            Address = request.Address,
             AccomodationType = request.AccomodationType,
             FeatureIds = request.FeatureIds
         };

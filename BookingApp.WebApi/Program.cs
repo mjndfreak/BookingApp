@@ -90,6 +90,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMaintanenceMiddleware();
+// This line of code is responsible for adding the middleware to the pipeline.
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

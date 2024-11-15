@@ -7,7 +7,7 @@ public class AddHotelDto
 {
     public string Name { get; set; }
     public int Stars { get; set; }
-    public string Location { get; set; }
+    public string Address { get; set; }
     public AccomodationType AccomodationType { get; set; }
     public List<int> FeatureIds { get; set; }
 }

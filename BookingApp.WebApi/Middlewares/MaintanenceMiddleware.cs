@@ -5,7 +5,6 @@ namespace ApiProject.Middlewares;
 public class MaintanenceMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ISettingService _settingService;
 
     public MaintanenceMiddleware(RequestDelegate next)
     {
@@ -15,7 +14,7 @@ public class MaintanenceMiddleware
     public async Task Invoke(HttpContext context)
     {
         var settingService = context.RequestServices.GetService<ISettingService>(); 
-        bool maintanenceMode = _settingService.GetMaintanenceStatus();
+        bool maintanenceMode = settingService.GetMaintanenceStatus();
 
         if (context.Request.Path.StartsWithSegments("/api/auth/login") || context.Request.Path.StartsWithSegments("/api/settings"))
         {
@@ -25,8 +24,11 @@ public class MaintanenceMiddleware
 
         if (maintanenceMode)
         {
+            context.Response.StatusCode = 503;                              
             await context.Response.WriteAsync("The application is under maintenance.");
+            return;
         }
+        
         await _next(context); 
     }
 }

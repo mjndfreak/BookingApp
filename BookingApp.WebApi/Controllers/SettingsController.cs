@@ -17,7 +17,6 @@ public class SettingsController : ControllerBase
     
     [HttpPatch]
     [Authorize(Roles = "Admin")]
-    [TimeControlFilter]
     public async Task<IActionResult> ToggleMaintenanceMode()
     {
         await _settingService.ToggleMaintenanceMode();

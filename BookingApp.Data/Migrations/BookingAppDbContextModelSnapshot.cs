@@ -59,15 +59,15 @@ namespace BookingApp.Data.Migrations
                     b.Property<int>("AccomodationType")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
@@ -209,7 +209,7 @@ namespace BookingApp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 14, 17, 40, 17, 220, DateTimeKind.Utc).AddTicks(9520),
+                            CreatedAt = new DateTime(2024, 11, 15, 12, 58, 9, 854, DateTimeKind.Utc).AddTicks(4400),
                             IsDeleted = false,
                             MaintenenceMode = false
                         });

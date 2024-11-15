@@ -12,7 +12,7 @@ public class TimeControlFilter : ActionFilterAttribute
     {
         var now = DateTime.UtcNow.TimeOfDay;
         
-        StartTime = "23:00:00";
+        StartTime = "09:00:00";
         EndTime = "23:59:59";
 
         if (now >= TimeSpan.Parse(StartTime) && now <= TimeSpan.Parse(EndTime))

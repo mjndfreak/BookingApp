@@ -40,16 +40,16 @@ public class UserManager : IUserService
             FirstName = user.FirstName,
             LastName = user.LastName,
             BirthDate = user.BirthDate.ToUniversalTime(),
-            UserType = UserType.Customer
+            UserType = UserType.Admin
         };
         _userRepository.Add(userEntity);
         try
         {
             await _unitOfWork.SaveChangesAsync();
         }
-        catch (Exception exception)
+        catch (Exception)
         {
-            throw new Exception("An error occurred while saving the entity changes.", exception);
+            throw new Exception("An error occurred while saving the entity changes.");
         }
 
         return new ServiceMessage

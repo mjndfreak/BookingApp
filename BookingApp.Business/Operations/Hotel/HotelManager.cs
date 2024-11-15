@@ -28,7 +28,7 @@ public class HotelManager : IHotelService
         {
             return new ServiceMessage
             {
-                IsSuccess = true,
+                IsSuccess = false,
                 Message = "This hotel is in database already."
             };
         }
@@ -38,7 +38,7 @@ public class HotelManager : IHotelService
         {
             Name = hotelDto.Name,
             Stars = hotelDto.Stars,
-            Location = hotelDto.Location,
+            Address = hotelDto.Address,
             AccomodationType = hotelDto.AccomodationType
         };
         _hotelRepository.Add(hotelEntity);
@@ -46,7 +46,7 @@ public class HotelManager : IHotelService
         {
             await _unitOfWork.SaveChangesAsync();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new Exception("Error while adding hotel!");
         }
@@ -69,7 +69,7 @@ public class HotelManager : IHotelService
             catch (Exception)
             {
                 await _unitOfWork.RollbackTransaction();
-                throw new Exception("Error while adding Hotel Featur!!");
+                throw new Exception("Error while adding Hotel Feature!!");
             }
 
            
@@ -87,7 +87,7 @@ public class HotelManager : IHotelService
             Id = x.Id,
             Name = x.Name,
             Stars = x.Stars,
-            Location = x.Location,
+            Address = x.Address,
             AccomodationType = x.AccomodationType,
             Features = x.HotelFeatures.Select(x => new HotelFeatureDto
             {
@@ -105,7 +105,7 @@ public class HotelManager : IHotelService
             Id = x.Id,
             Name = x.Name,
             Stars = x.Stars,
-            Location = x.Location,
+            Address = x.Address,
             AccomodationType = x.AccomodationType,
             Features = x.HotelFeatures.Select(x => new HotelFeatureDto
             {
@@ -186,7 +186,7 @@ public class HotelManager : IHotelService
         
         hotel.Name = updateHotelDto.Name;
         hotel.Stars = updateHotelDto.Stars;
-        hotel.Location = updateHotelDto.Location;
+        hotel.Address = updateHotelDto.Address;
         hotel.AccomodationType = updateHotelDto.AccomodationType;
         
         _hotelRepository.Update(hotel);

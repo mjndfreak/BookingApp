@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookingApp.Data.Migrations
 {
     [DbContext(typeof(BookingAppDbContext))]
-    [Migration("20241105165410_BookingAppDb")]
-    partial class BookingAppDb
+    [Migration("20241115125810_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,7 +80,7 @@ namespace BookingApp.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int?>("Stars")
+                    b.Property<int>("Stars")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -184,6 +184,40 @@ namespace BookingApp.Data.Migrations
                     b.ToTable("Rooms");
                 });
 
+            modelBuilder.Entity("BookingApp.Data.Entities.SettingEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("MaintenenceMode")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2024, 11, 15, 12, 58, 9, 854, DateTimeKind.Utc).AddTicks(4400),
+                            IsDeleted = false,
+                            MaintenenceMode = false
+                        });
+                });
+
             modelBuilder.Entity("BookingApp.Data.Entities.UserEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -200,8 +234,8 @@ namespace BookingApp.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("character varying(40)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -213,7 +247,8 @@ namespace BookingApp.Data.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
