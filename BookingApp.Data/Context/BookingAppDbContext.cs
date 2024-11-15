@@ -1,6 +1,7 @@
+using BookingApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookingApp.Data.Entities;
+namespace BookingApp.Data.Context;
 
 public class BookingAppDbContext : DbContext
 {
@@ -11,9 +12,7 @@ public class BookingAppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
-        //Fluent Api
-        
+        // Fluent API configurations applied for entity mappings
         modelBuilder.ApplyConfiguration(new FeatureConfiguration());
         modelBuilder.ApplyConfiguration(new HotelConfiguration());
         modelBuilder.ApplyConfiguration(new HotelFeatureConfiguration());
@@ -21,6 +20,7 @@ public class BookingAppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new RoomConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
 
+        // Seeding initial data for the SettingEntity
         modelBuilder.Entity<SettingEntity>().HasData(new SettingEntity
         {
             Id = 1,
@@ -30,6 +30,7 @@ public class BookingAppDbContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
+    // DbSets for different entities representing tables in the database
     public DbSet<UserEntity> Users => Set<UserEntity>();
     public DbSet<FeatureEntity> Features => Set<FeatureEntity>();
     public DbSet<HotelEntity> Hotels => Set<HotelEntity>();
@@ -37,5 +38,4 @@ public class BookingAppDbContext : DbContext
     public DbSet<ReservationEntity> Reservations => Set<ReservationEntity>();
     public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
     public DbSet<SettingEntity> Settings { get; set; }
-    
 }
