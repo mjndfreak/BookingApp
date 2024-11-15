@@ -5,8 +5,8 @@ namespace ApiProject.Filters;
 
 public class TimeControlFilter : ActionFilterAttribute
 {
-    public string StartTime { get; set; }
-    public string EndTime { get; set; }
+    public required string StartTime { get; set; }
+    public required string EndTime { get; set; }
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {

@@ -5,9 +5,9 @@ namespace BookingApp.Data.Entities;
 public class HotelFeatureEntity : BaseEntity
 {
     public int HotelId { get; set; }
-    public HotelEntity Hotel { get; set; }
+    public required HotelEntity Hotel { get; set; }
     public int FeatureId { get; set; }
-    public FeatureEntity Feature { get; set; }
+    public required FeatureEntity Feature { get; set; }
 }
 
 public class HotelFeatureConfiguration : BaseConfiguration<HotelFeatureEntity>

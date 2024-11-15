@@ -11,5 +11,5 @@ public interface IRepository<TEntity>
     void Update(TEntity entity);
     TEntity GetById(int id);
     TEntity Get(Expression<Func<TEntity,bool>> predicate);
-    IQueryable<TEntity> GetAll(Expression<Func<TEntity,bool>> predicate = null);
+    IQueryable<TEntity> GetAll(Expression<Func<TEntity,bool>> predicate = null!);
 }

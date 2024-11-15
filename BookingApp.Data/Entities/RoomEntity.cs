@@ -5,11 +5,11 @@ namespace BookingApp.Data.Entities;
 public class RoomEntity : BaseEntity
 {
     public int HotelId { get; set; }
-    public string RoomNumber { get; set; }
+    public required string RoomNumber { get; set; }
     
     // Relational Properties
-    public ICollection<ReservationEntity> Reservations { get; set; }
-    public HotelEntity Hotel { get; set; }
+    public required ICollection<ReservationEntity> Reservations { get; set; }
+    public required HotelEntity Hotel { get; set; }
 }
 
 public class RoomConfiguration : BaseConfiguration<RoomEntity>

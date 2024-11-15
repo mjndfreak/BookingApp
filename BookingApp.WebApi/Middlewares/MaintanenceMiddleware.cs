@@ -16,7 +16,7 @@ public class MaintanenceMiddleware
     public async Task Invoke(HttpContext context)
     {
         var settingService = context.RequestServices.GetService<ISettingService>(); 
-        bool maintanenceMode = _settingService.GetMaintanenceStatus();
+        bool maintanenceMode = _settingService.GetMaintenenceStatus();
 
         if (context.Request.Path.StartsWithSegments("/api/auth/login") || context.Request.Path.StartsWithSegments("/api/settings"))
         {

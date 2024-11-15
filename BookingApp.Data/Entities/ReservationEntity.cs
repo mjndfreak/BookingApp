@@ -11,8 +11,8 @@ public class ReservationEntity : BaseEntity
     public int GuestCount { get; set; }
     
     //Relational Properties
-    public UserEntity User { get; set; }
-    public RoomEntity Room { get; set; }
+    public required UserEntity User { get; set; }
+    public required RoomEntity Room { get; set; }
 }
 
 public class ReservationConfiguration : BaseConfiguration<ReservationEntity>

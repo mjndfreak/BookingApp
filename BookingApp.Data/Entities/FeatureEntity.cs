@@ -4,10 +4,10 @@ namespace BookingApp.Data.Entities;
 
 public class FeatureEntity : BaseEntity
 {
-    public string Title { get; set; }
+    public required string Title { get; set; }
     
     // Relational Properties
-    public ICollection<HotelFeatureEntity> HotelFeatures { get; set; }
+    public required ICollection<HotelFeatureEntity> HotelFeatures { get; set; }
 }
 
 public class FeatureConfiguration : BaseConfiguration<FeatureEntity>

@@ -60,7 +60,7 @@ public class UserManager : IUserService
 
     public ServiceMessage<UserInfoDto> LoginUser(LoginUserDto user)
     {
-        var userEntity = _userRepository.Get(x => x.Email.ToLower() == user.Email);
+        var userEntity = _userRepository.Get(x => x.Email!.ToLower() == user.Email);
         if (userEntity == null)
         {
             return new ServiceMessage<UserInfoDto>
@@ -70,7 +70,7 @@ public class UserManager : IUserService
             };
         }
         
-        var unprotectedPassword = _protector.Unprotect(userEntity.Password);
+        var unprotectedPassword = _protector.Unprotect(userEntity.Password!);
 
         if (unprotectedPassword == user.Password)
         {

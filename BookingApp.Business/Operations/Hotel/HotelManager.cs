@@ -46,7 +46,7 @@ public class HotelManager : IHotelService
         {
             await _unitOfWork.SaveChangesAsync();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new Exception("Error while adding hotel!");
         }
@@ -95,7 +95,7 @@ public class HotelManager : IHotelService
                 Title = x.Feature.Title
             }).ToList()
         }).FirstOrDefaultAsync();
-        return hotel;
+        return hotel!;
     }
 
     public async Task<List<HotelDto>> GetAllHotels()

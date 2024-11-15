@@ -3,5 +3,5 @@ namespace BookingApp.Business.Operations.Setting;
 public interface ISettingService
 {
     Task ToggleMaintenanceMode();
-    bool GetMaintanenceStatus();
+    bool GetMaintenenceStatus();
 }

@@ -6,7 +6,7 @@ namespace BookingApp.Data.UnitOfWork;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly BookingAppDbContext _db;
-    private IDbContextTransaction _transaction;
+    private IDbContextTransaction? _transaction;
     
     public UnitOfWork(BookingAppDbContext db)
     {

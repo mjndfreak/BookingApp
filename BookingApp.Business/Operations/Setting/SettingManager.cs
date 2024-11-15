@@ -26,11 +26,11 @@ public class SettingManager : ISettingService
         }
         catch (Exception)
         {
-            throw new Exception("An error occurred while updating the Maintanence Setting.");
+            throw new Exception("An error occurred while updating the Maintenance Setting.");
         }
     }
 
-    public bool GetMaintanenceStatus()
+    public bool GetMaintenenceStatus()
     {
         var maintanenceStatus = _settingRepository.GetById(1).MaintenenceMode;
         return maintanenceStatus;

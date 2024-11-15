@@ -6,5 +6,5 @@ public class AddFeatureRequest
 {
     [Required]
     [Length(5,30)]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 }

@@ -89,6 +89,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Add the MaintanenceMiddleware to the pipeline
+app.UseMiddleware<MaintanenceMiddleware>();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.UseStaticFiles();
+app.UseRouting();
 app.UseMaintanenceMiddleware();
 app.UseHttpsRedirection();
 app.UseAuthentication();
