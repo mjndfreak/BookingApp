@@ -7,9 +7,10 @@ public class MaintanenceMiddleware
     private readonly RequestDelegate _next;
     private readonly ISettingService _settingService;
 
-    public MaintanenceMiddleware(RequestDelegate next)
+    public MaintanenceMiddleware(RequestDelegate next, ISettingService settingService)
     {
         _next = next;
+        _settingService = settingService;
     }
 
     public async Task Invoke(HttpContext context)
