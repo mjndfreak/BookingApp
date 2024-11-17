@@ -89,10 +89,10 @@ public class HotelManager : IHotelService
             Stars = x.Stars,
             Address = x.Address,
             AccomodationType = x.AccomodationType,
-            Features = x.HotelFeatures.Select(x => new HotelFeatureDto
+            Features = x.HotelFeatures.Select(f => new HotelFeatureDto
             {
-                Id = x.Feature.Id,
-                Title = x.Feature.Title
+                Id = f.Feature.Id,
+                Title = f.Feature.Title
             }).ToList()
         }).FirstOrDefaultAsync();
         return hotel;
@@ -107,10 +107,10 @@ public class HotelManager : IHotelService
             Stars = x.Stars,
             Address = x.Address,
             AccomodationType = x.AccomodationType,
-            Features = x.HotelFeatures.Select(x => new HotelFeatureDto
+            Features = x.HotelFeatures.Select(f => new HotelFeatureDto
             {
-                Id = x.Feature.Id,
-                Title = x.Feature.Title
+                Id = f.Feature.Id,
+                Title = f.Feature.Title
             }).ToList()
         }).ToListAsync();
         return hotels;

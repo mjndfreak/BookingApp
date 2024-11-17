@@ -25,6 +25,5 @@ public class TimeControlFilter : ActionFilterAttribute
             Content = "The service is not available at this time.",
             StatusCode = 403
         };
-
     }
 }
